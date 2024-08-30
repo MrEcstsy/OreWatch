@@ -48,7 +48,7 @@ final class PlayerManager
      * Create a session
      *
      * @param Player $player
-     * @return EssentialPlayer
+     * @return OreWatchPlayer
      * @throws \JsonException
      */
     public function createSession(Player $player): OreWatchPlayer
