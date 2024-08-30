@@ -5,11 +5,15 @@ namespace ecstsy\OreWatch\Utils;
 use ecstsy\OreWatch\Loader;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
+use RuntimeException;
 
 class Utils {
 
-    private static array $configCache = [];
-
+    private static array $configCache = []
+    ;
+    /**
+     * @throws RuntimeException if the configuration file is not found or if the format is unsupported.
+     */
     public static function getConfiguration(PluginBase $plugin, string $fileName): Config {
         $pluginFolder = Loader::getInstance()->getDataFolder();
         $filePath = $pluginFolder . $fileName;
@@ -19,8 +23,7 @@ class Utils {
         }
 
         if (!file_exists($filePath)) {
-            Loader::getInstance()->getLogger()->warning("Configuration file '$filePath' not found.");
-            return null;
+            throw new RuntimeException("Configuration file '$filePath' not found.");
         }
         
         $extension = pathinfo($fileName, PATHINFO_EXTENSION);
@@ -36,8 +39,7 @@ class Utils {
                 break;
     
             default:
-                Loader::getInstance()->getLogger()->warning("Unsupported configuration file format for '$filePath'.");
-                return null;
+                throw new RuntimeException("Unsupported configuration file format for '$filePath'.");
         }
 
         self::$configCache[$filePath] = $config;
