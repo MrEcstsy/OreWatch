@@ -1,0 +1,13 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/MrEcstsy/OreWatch
+build-by-default: true
+branches:
+- main
+projects:
+  OreWatch:
+    path: ""
+    libs: 
+      - src: "Paroxity/Commando/Commando"
+        version: "^3.2.0"
+      - src: ifera-mc/ConfigUpdater/ConfigUpdater
+        version: ^2.1.0
+...
