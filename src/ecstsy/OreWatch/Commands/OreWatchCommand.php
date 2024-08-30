@@ -14,7 +14,7 @@ class OreWatchCommand extends BaseCommand {
     public function prepare(): void {
         $this->setPermission($this->getPermission());
 
-        $this->registerSubCommand(Loader::getInstance(), new NotifySubCommand("notify", "Allows you to turn on and off alerts"));
+        $this->registerSubCommand(new NotifySubCommand("notify", "Allows you to turn on and off alerts"));
     }   
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
